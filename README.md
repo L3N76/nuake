@@ -9,8 +9,8 @@ This plugin follows the standard runtime path structure.
 | [Dein][1] | `call dein#add('Lenovsky/nuake')` |
 | [minpac][2] | `call minpac#add('Lenovsky/nuake')` |
 | [Pathogen][3] | `git clone https://github.com/Lenovsky/nuake.git ~/.config/nvim/bundle/nuake` |
-| [Plug][5] | `Plug 'Lenovsky/nuake'` |
-| [Vundle][4] | `Plugin 'Lenovsky/nuake'` |
+| [Plug][4] | `Plug 'Lenovsky/nuake'` |
+| [Vundle][5] | `Plugin 'Lenovsky/nuake'` |
 | manual | copy all of the files into your `~/.config/nvim` directory |
 
 ## Usage
