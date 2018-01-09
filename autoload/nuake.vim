@@ -22,15 +22,19 @@ endfunction
 
 " nuake#OpenWindow() {{{2
 function! nuake#OpenWindow()
-    "FIXME: Add option to set Nuake initial size
-    "       Add option to change Nuake position
-
     let nuakewinnr = bufwinnr('Nuake')
     let nuakebufnr = bufnr('Nuake')
-    let height = float2nr(0.25 * floor(&lines - 2))
 
-    exe  'silent keepalt ' . 'botright ' . height . 'split ' . 'Nuake'
-    exe  'silent ' . 'resize ' . height
+    if g:nuake_position == 0
+        let mode = ''
+        let size = float2nr(g:nuake_size * floor(&lines - 2))
+    else
+        let mode = 'vertical '
+        let size = float2nr(g:nuake_size * floor(&columns))
+    endif
+
+    exe  'silent keepalt ' . 'botright ' . mode . size . 'split ' . 'Nuake'
+    exe  'silent ' . mode . 'resize ' . size
 
     "FIXME: Not quite elegent
     try

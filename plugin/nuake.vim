@@ -16,6 +16,17 @@ if !has('nvim')
     finish
 endif
 
+let options = [
+    \ ['position', 0],
+    \ ['size', 0.25],
+\ ]
+
+for [opt, val] in options
+    if !exists('g:nuake_' . opt)
+        execute 'let g:nuake_' . opt . ' = ' . string(val)
+    endif
+endfor
+
 " Commands {{{1
 command! -nargs=0 Nuake         call nuake#ToggleWindow()
 
