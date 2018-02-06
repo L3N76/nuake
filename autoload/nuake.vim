@@ -33,18 +33,15 @@ function! nuake#OpenWindow()
 	endif
 
 	exe  'silent keepalt ' . 'botright ' . mode . size . 'split ' . 'Nuake'
-	exe  'silent ' . mode . 'resize ' . size
 
-	"FIXME: Not quite elegent
-	try
+	if nuakebufnr != -1
 		exe  'buffer ' . nuakebufnr
-	catch
+	else
 		call termopen($SHELL)
 		file Nuake
-	endtry
+	endif
 
 	call nuake#InitWindow()
-
 endfunction
 
 " nuake#InitWindow() {{{2
