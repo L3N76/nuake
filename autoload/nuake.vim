@@ -83,9 +83,6 @@ endfunction
 " nuake#CloseWindow() {{{2
 function! nuake#CloseWindow()
 	let nuakewinnr = bufwinnr('Nuake')
-	if nuakewinnr == -1
-		return
-	endif
 
 	if winnr() == nuakewinnr
 		if winbufnr(2) != -1
