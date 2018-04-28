@@ -22,14 +22,14 @@ function! s:OpenWindow() abort "{{{2
 	let l:nuake_buf_nr = bufnr('Nuake')
 
 	if g:nuake_position == 0
-		let mode = ''
-		let size = float2nr(g:nuake_size * floor(&lines - 2))
+		let l:mode = ''
+		let l:size = float2nr(g:nuake_size * floor(&lines - 2))
 	else
-		let mode = 'vertical '
-		let size = float2nr(g:nuake_size * floor(&columns))
+		let l:mode = 'vertical '
+		let l:size = float2nr(g:nuake_size * floor(&columns))
 	endif
 
-	exe  'silent keepalt ' . 'botright ' . mode . size . 'split ' . 'Nuake'
+	exe  'silent keepalt ' . 'botright ' . l:mode . l:size . 'split ' . 'Nuake'
 
 	if l:nuake_buf_nr != -1
 		exe  'buffer ' . l:nuake_buf_nr
@@ -112,7 +112,7 @@ function! s:LastStandingWindow() abort "{{{2
 endfunction
 
 " Extensions suppport{{{1
-function! nuake#Airline(...) abort "{{{
+function! nuake#Airline(...) abort "{{{2
 	if &filetype == 'nuake'
 
 		" Left side setup
