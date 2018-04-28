@@ -1,28 +1,25 @@
 " ============================================================================
 " File:			autoload/nuake.vim
 " Description:	A Quake-style terminal panel for Neovim.
-" Author:		Lenovsky <lenovsky@protonmail.ch>
+" Author:		Lenovsky <lenovsky@pm.me>
 " Source:		https://github.com/Lenovsky/nuake
 " Licence:		MIT
 " Version:		0.0
 " ============================================================================
 
 " Window management {{{1
-" nuake#ToggleWindow() {{{2
-function! nuake#ToggleWindow()
-	let nuakewinnr = bufwinnr('Nuake')
+function! nuake#ToggleWindow() abort "{{{2
+	let l:nuake_win_nr = bufwinnr('Nuake')
 
-	if nuakewinnr != -1
-		call nuake#CloseWindow()
-		return
+	if l:nuake_win_nr != -1
+		call s:CloseWindow()
+	else
+		call s:OpenWindow()
 	endif
-
-	call nuake#OpenWindow()
 endfunction
 
-" nuake#OpenWindow() {{{2
-function! nuake#OpenWindow()
-	let nuakebufnr = bufnr('Nuake')
+function! s:OpenWindow() abort "{{{2
+	let l:nuake_buf_nr = bufnr('Nuake')
 
 	if g:nuake_position == 0
 		let mode = ''
@@ -34,19 +31,17 @@ function! nuake#OpenWindow()
 
 	exe  'silent keepalt ' . 'botright ' . mode . size . 'split ' . 'Nuake'
 
-	if nuakebufnr != -1
-		exe  'buffer ' . nuakebufnr
+	if l:nuake_buf_nr != -1
+		exe  'buffer ' . l:nuake_buf_nr
 	else
 		call termopen($SHELL)
 		file Nuake
 	endif
 
-	call nuake#InitWindow()
+	call s:InitWindow()
 endfunction
 
-" nuake#InitWindow() {{{2
-function! nuake#InitWindow()
-
+function! s:InitWindow() abort "{{{2
 	" Statusline-local options
 	if exists('g:loaded_airline') &&
 				\ index(g:airline_statusline_funcrefs, function('nuake#Airline')) < 0
@@ -77,39 +72,35 @@ function! nuake#InitWindow()
 	setlocal foldcolumn=0
 
 	startinsert!
-
 endfunction
 
-" nuake#CloseWindow() {{{2
-function! nuake#CloseWindow()
-	let nuakewinnr = bufwinnr('Nuake')
+function! s:CloseWindow() abort "{{{2
+	let l:nuake_win_nr = bufwinnr('Nuake')
 
-	if winnr() == nuakewinnr
+	if winnr() == l:nuake_win_nr
 		if winbufnr(2) != -1
 			hide
 		endif
 	else
-		let curbufnr = bufnr('%')
-		exe nuakewinnr . 'wincmd w'
+		let l:current_buf_nr = bufnr('%')
+		exe l:nuake_win_nr . 'wincmd w'
 		close
 
-		let winnum = bufwinnr(curbufnr)
-		if winnr() != winnum
-			exe winnum . 'wincmd w'
+		let l:win_num = bufwinnr(l:current_buf_nr)
+		if winnr() != l:win_num
+			exe l:win_num . 'wincmd w'
 		endif
 	endif
 endfunction
 
-" nuake#ResizeWindow() {{{2
-function! nuake#ResizeWindow()
-	let nuakewinnr = bufwinnr('Nuake')
-	let height = float2nr(0.25 * floor(&lines - 2))
+function! s:ResizeWindow() abort "{{{2
+	let l:nuake_win_nr = bufwinnr('Nuake')
+	let l:height = float2nr(0.25 * floor(&lines - 2))
 
-	exe nuakewinnr . 'resize ' . height
+	exe l:nuake_win_nr . 'resize ' . l:height
 endfunction
 
-" nuake#LastStandingWindow() {{{2
-function! nuake#LastStandingWindow()
+function! s:LastStandingWindow() abort "{{{2
 	if winbufnr(2) == -1
 		if tabpagenr('$') == 1
 			bdelete
@@ -119,9 +110,9 @@ function! nuake#LastStandingWindow()
 		endif
 	endif
 endfunction
+
 " Extensions suppport{{{1
-" nuake#Airline(){{{2
-function! nuake#Airline(...)
+function! nuake#Airline(...) abort "{{{
 	if &filetype == 'nuake'
 
 		" Left side setup
@@ -140,14 +131,14 @@ endfunction
 " Autocomands{{{1
 augroup NuakeLastStandingWindow
 	autocmd!
-	autocmd BufEnter Nuake nested call nuake#LastStandingWindow()
+	autocmd BufEnter Nuake nested call s:LastStandingWindow()
 augroup END
 
 augroup NuakeResizeWindow
 	autocmd!
 	autocmd VimResized *
 				\ if bufwinnr('Nuake') |
-				\ call nuake#ResizeWindow() |
+				\ call s:ResizeWindow() |
 				\ redraw |
 				\ endif
 augroup END
