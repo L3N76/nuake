@@ -18,6 +18,7 @@ endif
 let s:options = [
 	\ ['position', 0],
 	\ ['size', 0.25],
+	\ ['per_tab', 0],
 \ ]
 
 for [opt, val] in s:options

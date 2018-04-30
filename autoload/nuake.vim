@@ -9,7 +9,7 @@
 
 " Window management {{{1
 function! nuake#ToggleWindow() abort "{{{2
-	let l:nuake_win_nr = bufwinnr('Nuake')
+	let l:nuake_win_nr = bufwinnr(s:NuakeBufName())
 
 	if l:nuake_win_nr != -1
 		call s:CloseWindow()
@@ -19,7 +19,7 @@ function! nuake#ToggleWindow() abort "{{{2
 endfunction
 
 function! s:OpenWindow() abort "{{{2
-	let l:nuake_buf_nr = bufnr('Nuake')
+	let l:nuake_buf_nr = bufnr(s:NuakeBufName())
 
 	if g:nuake_position == 0
 		let l:mode = ''
@@ -29,13 +29,13 @@ function! s:OpenWindow() abort "{{{2
 		let l:size = float2nr(g:nuake_size * floor(&columns))
 	endif
 
-	exe  'silent keepalt ' . 'botright ' . l:mode . l:size . 'split ' . 'Nuake'
+	execute  'silent keepalt botright ' . l:mode . l:size . 'split'
 
 	if l:nuake_buf_nr != -1
-		exe  'buffer ' . l:nuake_buf_nr
+		execute  'buffer ' . l:nuake_buf_nr
 	else
-		call termopen($SHELL)
-		file Nuake
+		execute  'edit term://$SHELL'
+		call s:NuakeBufName()
 	endif
 
 	call s:InitWindow()
@@ -75,7 +75,7 @@ function! s:InitWindow() abort "{{{2
 endfunction
 
 function! s:CloseWindow() abort "{{{2
-	let l:nuake_win_nr = bufwinnr('Nuake')
+	let l:nuake_win_nr = bufwinnr(s:NuakeBufName())
 
 	if winnr() == l:nuake_win_nr
 		if winbufnr(2) != -1
@@ -114,7 +114,6 @@ endfunction
 " Extensions suppport{{{1
 function! nuake#Airline(...) abort "{{{2
 	if &filetype == 'nuake'
-
 		" Left side setup
 		let w:airline_section_a = 'NUAKE'
 		let w:airline_section_b = ''
@@ -125,6 +124,27 @@ function! nuake#Airline(...) abort "{{{2
 		let w:airline_section_x = ''
 		let w:airline_render_right = 1
 		return 0
+	endif
+endfunction
+
+" Helpers {{{1
+function! s:NuakeBufName() abort "{{{2
+	if g:nuake_per_tab == 0
+		if !exists('s:nuake_buf_name')
+			let s:nuake_buf_name = -1
+		elseif exists('b:term_title') && s:nuake_buf_name == -1
+			let s:nuake_buf_name = b:term_title
+		else
+			return s:nuake_buf_name
+		endif
+	else
+		if !exists('t:nuake_buf_name')
+			let t:nuake_buf_name = -1
+		elseif exists('b:term_title') && t:nuake_buf_name == -1
+			let t:nuake_buf_name = b:term_title
+		else
+			return t:nuake_buf_name
+		endif
 	endif
 endfunction
 
