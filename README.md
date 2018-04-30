@@ -21,6 +21,12 @@ This plugin follows the standard runtime path structure.
    nnoremap <F4> :Nuake<CR>
    tnoremap <F4> <C-\><C-n> :Nuake<CR>
    ```  
+## Options
+| Option              | Posible values | Default vaules | Description                                        |            
+| :------------------ | :--------------| :--------------|:---------------------------------------------------|
+| `g:nuake_position`  | `0` or `1`     | `0`            | Sets the horizontal/vertical position of Nuake.    |
+| `g:nuake_size`      | `0` to `1`     | `0.25`         | Defines the size of Nuake.                         |
+| `g:nuake_per_tab`   | `0` or `1`     | `0`            | Enables/disables Nuake per tab page functionality. |                                 
 
 [1]: https://github.com/Shougo/dein.vim
 [2]: https://github.com/k-takata/minpac/
