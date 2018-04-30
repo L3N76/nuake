@@ -128,16 +128,25 @@ function! nuake#Airline(...) abort "{{{2
 	endif
 endfunction
 
-" Autocomands{{{1
-augroup NuakeLastStandingWindow
+" Autocomands {{{1
+augroup nuake_last_standing_window
 	autocmd!
 	autocmd BufEnter Nuake nested call s:LastStandingWindow()
 augroup END
 
-augroup NuakeResizeWindow
+augroup nuake_tab_close
+	if g:nuake_per_tab == 1
+		autocmd!
+		autocmd TabLeave * let s:temp_nuake_buf_nr = bufnr(s:NuakeBufName())
+		autocmd TabClosed * execute 'bdelete! ' . s:temp_nuake_buf_nr
+		autocmd TabClosed * unlet s:temp_nuake_buf_nr
+	endif
+augroup END
+
+augroup nuake_resize_window
 	autocmd!
 	autocmd VimResized *
-				\ if bufwinnr('Nuake') |
+				\ if bufwinnr(s:NuakeBufName()) |
 				\ call s:ResizeWindow() |
 				\ redraw |
 				\ endif
