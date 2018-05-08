@@ -1,11 +1,4 @@
-" ============================================================================
-" File:			autoload/nuake.vim
-" Description:	A Quake-style terminal panel for Neovim.
-" Author:		Lenovsky <lenovsky@pm.me>
-" Source:		https://github.com/Lenovsky/nuake
-" Licence:		MIT
-" Version:		0.0
-" ============================================================================
+" autoload/nuake.vim
 
 " Window management {{{1
 function! nuake#ToggleWindow() abort "{{{2

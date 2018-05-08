@@ -1,11 +1,4 @@
-" ============================================================================
-" File:		   plugin/nuake.vim
-" Description: A Quake-style terminal panel for Neovim.
-" Author:	   Lenovsky <lenovsky@pm.me>
-" Source:	   https://github.com/Lenovsky/nuake
-" Licence:	   MIT
-" Version:	   0.0
-" ============================================================================
+" plugin/nuake.vim
 
 "Initialization {{{1
 if !has('nvim')
