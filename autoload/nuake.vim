@@ -87,7 +87,7 @@ function! s:CloseWindow() abort "{{{2
 endfunction
 
 function! s:ResizeWindow() abort "{{{2
-	let l:nuake_win_nr = bufwinnr('Nuake')
+	let l:nuake_win_nr = bufwinnr(s:NuakeBufName())
 	let l:height = float2nr(0.25 * floor(&lines - 2))
 
 	exe l:nuake_win_nr . 'resize ' . l:height
@@ -159,7 +159,7 @@ augroup END
 augroup nuake_resize_window
 	autocmd!
 	autocmd VimResized *
-				\ if bufwinnr(s:NuakeBufName()) |
+				\ if bufwinnr(s:NuakeBufName()) != -1 |
 				\ call s:ResizeWindow() |
 				\ redraw |
 				\ endif
