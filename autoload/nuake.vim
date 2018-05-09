@@ -14,15 +14,7 @@ endfunction
 function! s:OpenWindow() abort "{{{2
 	let l:nuake_buf_nr = bufnr(s:NuakeBufName())
 
-	if g:nuake_position == 0
-		let l:mode = ''
-		let l:size = float2nr(g:nuake_size * floor(&lines - 2))
-	else
-		let l:mode = 'vertical '
-		let l:size = float2nr(g:nuake_size * floor(&columns))
-	endif
-
-	execute  'silent keepalt botright ' . l:mode . l:size . 'split'
+	execute  'silent keepalt botright ' . s:NuakeLook() . 'split'
 
 	if l:nuake_buf_nr != -1
 		execute  'buffer ' . l:nuake_buf_nr
@@ -88,9 +80,8 @@ endfunction
 
 function! s:ResizeWindow() abort "{{{2
 	let l:nuake_win_nr = bufwinnr(s:NuakeBufName())
-	let l:height = float2nr(0.25 * floor(&lines - 2))
 
-	exe l:nuake_win_nr . 'resize ' . l:height
+	execute l:nuake_win_nr . 'resize ' . s:NuakeLook()
 endfunction
 
 function! s:LastStandingWindow() abort "{{{2
@@ -139,6 +130,22 @@ function! s:NuakeBufName() abort "{{{2
 			return t:nuake_buf_name
 		endif
 	endif
+endfunction
+
+function! s:NuakeLook() abort "{{{2
+	let l:nuake_win_nr = bufwinnr(s:NuakeBufName())
+
+	if g:nuake_position == 0
+		let l:mode = ''
+		let l:size = float2nr(g:nuake_size * floor(&lines - 2))
+	else
+		let l:mode = l:nuake_win_nr != -1 ? '' : 'vertical '
+		let l:size = float2nr(g:nuake_size * floor(&columns))
+	endif
+
+	let l:nuake_look = l:mode . l:size
+
+	return l:nuake_look
 endfunction
 
 " Autocomands {{{1
