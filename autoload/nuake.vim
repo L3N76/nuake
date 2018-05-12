@@ -55,8 +55,6 @@ function! s:InitWindow() abort "{{{2
 	setlocal norelativenumber
 	setlocal nofoldenable
 	setlocal foldcolumn=0
-
-	startinsert!
 endfunction
 
 function! s:CloseWindow() abort "{{{2
@@ -151,6 +149,11 @@ function! s:NuakeLook() abort "{{{2
 endfunction
 
 " Autocomands {{{1
+augroup nuake_start_insert
+	autocmd!
+	autocmd BufEnter term://* startinsert
+augroup END
+
 augroup nuake_last_standing_window
 	autocmd!
 	autocmd BufEnter * nested call s:LastStandingWindow()
