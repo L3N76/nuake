@@ -87,9 +87,13 @@ endfunction
 function! s:LastStandingWindow() abort "{{{2
 	let l:nuake_win_nr = bufwinnr(s:NuakeBufName())
 
-	if winnr('$') < 2 && tabpagenr('$') < 2  && l:nuake_win_nr != -1
-		bdelete!
-		quit
+	if winnr('$') < 2 && l:nuake_win_nr != -1
+		if tabpagenr('$') < 2
+			bdelete!
+			quit
+		else
+			close
+		endif
 	endif
 endfunction
 
