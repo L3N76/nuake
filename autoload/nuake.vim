@@ -85,13 +85,11 @@ function! s:ResizeWindow() abort "{{{2
 endfunction
 
 function! s:LastStandingWindow() abort "{{{2
-	if winbufnr(2) == -1
-		if tabpagenr('$') == 1
-			bdelete
-			quit
-		else
-			close
-		endif
+	let l:nuake_win_nr = bufwinnr(s:NuakeBufName())
+
+	if winnr('$') < 2 && tabpagenr('$') < 2  && l:nuake_win_nr != -1
+		bdelete!
+		quit
 	endif
 endfunction
 
@@ -151,7 +149,7 @@ endfunction
 " Autocomands {{{1
 augroup nuake_last_standing_window
 	autocmd!
-	autocmd BufEnter Nuake nested call s:LastStandingWindow()
+	autocmd BufEnter * nested call s:LastStandingWindow()
 augroup END
 
 augroup nuake_tab_close
