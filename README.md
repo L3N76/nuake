@@ -14,21 +14,22 @@ This plugin follows the standard runtime path structure.
 | manual | copy all of the files into your `~/.config/nvim` directory |
 
 ## Usage
-- Run `:Nuake` to toggle Nuake manually.  
+- Run `:Nuake` to toggle Nuake manually.
 
 - Add the following into your `~/.config/nvim/init.vim` to toggle Nuake with `F4`:
    ```
    nnoremap <F4> :Nuake<CR>
-   tnoremap <F4> <C-\><C-n> :Nuake<CR>
-   ```  
+   inoremap <F4> <C-\><C-n>:Nuake<CR>
+   tnoremap <F4> <C-\><C-n>:Nuake<CR>
+   ```
 ## Configuration
 You can tweak the behavior of Nuake by setting a few variables in your `~/.config/nvim/init.vim` file.
 
-| Option | Description |            
+| Option | Description |
 | :------| :---------- |
 | `let g:nuake_position = {0,1} (default 0)`<br><br><br> | Set the Nuake position:<br> &emsp; 0: horizontal,<br> &emsp; 1: vertical. |
 | `let g:nuake_size = {0-1} (default 0.25)` | Set the Nuake size in percent. |
-| `let g:nuake_per_tab = {0,1} (default 0)` | Enable the Nuake instance per tab page. |                                  
+| `let g:nuake_per_tab = {0,1} (default 0)` | Enable the Nuake instance per tab page. |
 
 [1]: https://github.com/Shougo/dein.vim
 [2]: https://github.com/k-takata/minpac/

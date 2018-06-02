@@ -31,7 +31,8 @@ Run |:Nuake| to toggle Nuake manually.
 Add the following into your |init.vim| to toggle Nuake with <F4>:
 >
     nnoremap <F4> :Nuake<CR>
-    tnoremap <F4> <C-\><C-n> :Nuake<CR>
+    inoremap <F4> <C-\><C-n>:Nuake<CR>
+    tnoremap <F4> <C-\><C-n>:Nuake<CR>
 
 ==============================================================================
 3. Configuration                                         *nuake-configuration*
