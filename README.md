@@ -11,7 +11,6 @@ This plugin follows the standard runtime path structure.
 | [Pathogen][3] | `git clone https://gitlab.com/Lenovsky/nuake.git ~/.config/nvim/bundle/nuake` |
 | [Plug][4] | `Plug 'https://gitlab.com/Lenovsky/nuake.git'` |
 | [Vundle][5] | `Plugin 'https://gitlab.com/Lenovsky/nuake.git'` |
-| manual | copy all of the files into your `~/.config/nvim` directory |
 
 ## Usage
 - Run `:Nuake` to toggle Nuake manually.
