@@ -1,7 +1,7 @@
 *nuake.txt* A Quake-style terminal panel for Neovim
 
 Author:     Lenovsky <lenovsky@pm.me>
-Source:     https://github.com/Lenovsky/nuake
+Source:     https://gitlab.com/Lenovsky/nuake
 Version:    1.0.0
 
 ==============================================================================
@@ -12,7 +12,7 @@ Contents                                                      *nuake-contents*
     3. Configuration ................... |nuake-configuration|
     4. Contributing .................... |nuake-contributing|
         4.1. Issues .................... |nuake-issues|
-        4.2. Pull requests ............. |nuake-pulls|
+        4.2. Merge requests ............ |nuake-merges|
     5. Changelog ....................... |nuake-changelog|
     6. License ......................... |nuake-license|
 
@@ -65,15 +65,15 @@ help improve Nuake.
 You can help improve Nuake by reporting issues and feature requests in the
 issue tracker:
 
-https://github.com/Lenovsky/nuake/issues
+https://gitlab.com/Lenovsky/nuake/issues
 
 ------------------------------------------------------------------------------
-4.2. Pull request                                                *nuake-pulls*
+4.2. Merge requests                                             *nuake-merges*
 
-Think you can make Nuake better? Awesome! Fork it on GitHub, pick a bug or
-feature and send a pull request:
+Think you can make Nuake better? Awesome! Fork it on GitLab, pick a bug or
+feature and create a merge request:
 
-https://github.com/Lenovsky/nuake/pulls
+https://gitlab.com/Lenovsky/nuake/merge_requests
 
 ==============================================================================
 5. Changelog                                                 *nuake-changelog*
@@ -87,7 +87,7 @@ v1.0.0
 MIT License
 Copyright (c) 2017-2018 Lenovsky <lenovsky@pm.me>
 
-https://github.com/Lenovsky/nuake/blob/master/LICENSE
+https://gitlab.com/Lenovsky/nuake/blob/master/LICENSE
 
 ==============================================================================
 vim:tw=78:ts=8:ft=help:norl:

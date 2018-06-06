@@ -6,11 +6,11 @@ This plugin follows the standard runtime path structure.
 
 | Plugin manager | How to install |
 | :------------- | :------------- |
-| [Dein][1] | `call dein#add('Lenovsky/nuake')` |
-| [minpac][2] | `call minpac#add('Lenovsky/nuake')` |
-| [Pathogen][3] | `git clone https://github.com/Lenovsky/nuake.git ~/.config/nvim/bundle/nuake` |
-| [Plug][4] | `Plug 'Lenovsky/nuake'` |
-| [Vundle][5] | `Plugin 'Lenovsky/nuake'` |
+| [Dein][1] | `call dein#add('https://gitlab.com/Lenovsky/nuake.git')` |
+| [minpac][2] | `call minpac#add('https://gitlab.com/Lenovsky/nuake.git')` |
+| [Pathogen][3] | `git clone https://gitlab.com/Lenovsky/nuake.git ~/.config/nvim/bundle/nuake` |
+| [Plug][4] | `Plug 'https://gitlab.com/Lenovsky/nuake.git'` |
+| [Vundle][5] | `Plugin 'https://gitlab.com/Lenovsky/nuake.git'` |
 | manual | copy all of the files into your `~/.config/nvim` directory |
 
 ## Usage
@@ -22,6 +22,7 @@ This plugin follows the standard runtime path structure.
    inoremap <F4> <C-\><C-n>:Nuake<CR>
    tnoremap <F4> <C-\><C-n>:Nuake<CR>
    ```
+
 ## Configuration
 You can tweak the behavior of Nuake by setting a few variables in your `~/.config/nvim/init.vim` file.
 
