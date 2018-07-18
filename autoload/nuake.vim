@@ -45,16 +45,19 @@ function! s:InitWindow() abort "{{{2
 	setlocal bufhidden=hide
 	setlocal noswapfile
 	setlocal nobuflisted
+	setlocal nomodified
 
 	" Window-local options
 	setlocal nolist
 	setlocal nowrap
 	setlocal winfixwidth
+	setlocal winfixheight
 	setlocal nospell
 	setlocal nonumber
 	setlocal norelativenumber
 	setlocal nofoldenable
 	setlocal foldcolumn=0
+	setlocal scrolloff=0
 endfunction
 
 function! s:CloseWindow() abort "{{{2
