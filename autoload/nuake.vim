@@ -27,19 +27,6 @@ function! s:OpenWindow() abort "{{{2
 endfunction
 
 function! s:InitWindow() abort "{{{2
-	" Statusline-local options
-	if exists('g:loaded_airline') &&
-				\ index(g:airline_statusline_funcrefs, function('nuake#Airline')) < 0
-		call airline#add_statusline_func('nuake#Airline')
-	else
-		setlocal statusline=\ NUAKE
-		setlocal statusline+=\ %{b:term_title}
-		setlocal statusline+=%=
-		setlocal statusline+=\[%{&fileformat}\]
-		setlocal statusline+=\ %p%%
-		setlocal statusline+=\ %l:%c
-	endif
-
 	" Buffer-local options
 	setlocal filetype=nuake
 	setlocal bufhidden=hide
@@ -94,22 +81,6 @@ function! s:LastStandingWindow() abort "{{{2
 		else
 			close
 		endif
-	endif
-endfunction
-
-" Extensions suppport{{{1
-function! nuake#Airline(...) abort "{{{2
-	if &filetype == 'nuake'
-		" Left side setup
-		let w:airline_section_a = 'NUAKE'
-		let w:airline_section_b = ''
-		let w:airline_section_c = '%{b:term_title}'
-		let w:airline_render_left = 1
-
-		" Right side setup
-		let w:airline_section_x = ''
-		let w:airline_render_right = 1
-		return 0
 	endif
 endfunction
 
