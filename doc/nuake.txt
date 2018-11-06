@@ -78,6 +78,10 @@ https://gitlab.com/Lenovsky/nuake/merge_requests
 ==============================================================================
 5. Changelog                                                 *nuake-changelog*
 
+v1.1.0
+    * Drop support for the statusline.
+    * Minor bug fixes.
+
 v1.0.0
     * Initial stable release.
 
