@@ -91,17 +91,15 @@ function! s:NuakeBufName() abort "{{{2
 			let s:nuake_buf_name = -1
 		elseif exists('b:term_title') && s:nuake_buf_name == -1
 			let s:nuake_buf_name = b:term_title
-		else
-			return s:nuake_buf_name
 		endif
+		return s:nuake_buf_name
 	else
 		if !exists('t:nuake_buf_name')
 			let t:nuake_buf_name = -1
 		elseif exists('b:term_title') && t:nuake_buf_name == -1
 			let t:nuake_buf_name = b:term_title
-		else
-			return t:nuake_buf_name
 		endif
+		return t:nuake_buf_name
 	endif
 endfunction
 
