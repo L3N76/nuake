@@ -19,7 +19,7 @@ function! s:OpenWindow() abort "{{{2
 	if l:nuake_buf_nr != -1
 		execute  'buffer ' . l:nuake_buf_nr
 	else
-		execute  'edit term://$SHELL'
+		execute  'terminal'
 		call s:NuakeBufName()
 	endif
 
