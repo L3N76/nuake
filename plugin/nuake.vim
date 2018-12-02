@@ -1,9 +1,9 @@
 " plugin/nuake.vim
 
 "Initialization {{{1
-if !has('nvim')
+if !has('nvim') && !has('patch-8.0.1593')
 	echohl WarningMsg
-	echomsg 'Nuake: Nuake requires Neovim'
+	echomsg 'Nuake: Nuake requires Neovim or Vim >= 8.0.1593'
 	echohl None
 	finish
 endif

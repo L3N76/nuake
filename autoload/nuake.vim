@@ -2,7 +2,7 @@
 
 " Window management {{{1
 function! nuake#ToggleWindow() abort "{{{2
-	let l:nuake_win_nr = bufwinnr(s:NuakeBufName())
+	let l:nuake_win_nr = bufwinnr(s:NuakeBufNr())
 
 	if l:nuake_win_nr != -1
 		call s:CloseWindow()
@@ -12,18 +12,20 @@ function! nuake#ToggleWindow() abort "{{{2
 endfunction
 
 function! s:OpenWindow() abort "{{{2
-	let l:nuake_buf_nr = bufnr(s:NuakeBufName())
+	let l:nuake_buf_nr = bufnr(s:NuakeBufNr())
 
 	execute  'silent keepalt botright ' . s:NuakeLook() . 'split'
 
 	if l:nuake_buf_nr != -1
 		execute  'buffer ' . l:nuake_buf_nr
 	else
-		execute  'terminal'
-		call s:NuakeBufName()
+		let l:vim_options = has('terminal') ? '++curwin ++kill=term' : ''
+
+		execute  'terminal' . l:vim_options
+		call s:InitWindow()
+		call s:NuakeBufNr()
 	endif
 
-	call s:InitWindow()
 endfunction
 
 function! s:InitWindow() abort "{{{2
@@ -47,32 +49,32 @@ function! s:InitWindow() abort "{{{2
 endfunction
 
 function! s:CloseWindow() abort "{{{2
-	let l:nuake_win_nr = bufwinnr(s:NuakeBufName())
+	let l:nuake_win_nr = bufwinnr(s:NuakeBufNr())
 
 	if winnr() == l:nuake_win_nr
 		if winbufnr(2) != -1
-			hide
+			close
 		endif
 	else
 		let l:current_buf_nr = bufnr('%')
-		exe l:nuake_win_nr . 'wincmd w'
+		execute l:nuake_win_nr . 'wincmd w'
 		close
 
 		let l:win_num = bufwinnr(l:current_buf_nr)
 		if winnr() != l:win_num
-			exe l:win_num . 'wincmd w'
+			execute l:win_num . 'wincmd w'
 		endif
 	endif
 endfunction
 
 function! s:ResizeWindow() abort "{{{2
-	let l:nuake_win_nr = bufwinnr(s:NuakeBufName())
+	let l:nuake_win_nr = bufwinnr(s:NuakeBufNr())
 
 	execute l:nuake_win_nr . 'resize ' . s:NuakeLook()
 endfunction
 
 function! s:LastStandingWindow() abort "{{{2
-	let l:nuake_win_nr = bufwinnr(s:NuakeBufName())
+	let l:nuake_win_nr = bufwinnr(s:NuakeBufNr())
 
 	if winnr('$') < 2 && l:nuake_win_nr != -1
 		if tabpagenr('$') < 2
@@ -85,26 +87,26 @@ function! s:LastStandingWindow() abort "{{{2
 endfunction
 
 " Helpers {{{1
-function! s:NuakeBufName() abort "{{{2
+function! s:NuakeBufNr() abort "{{{2
 	if g:nuake_per_tab == 0
-		if !exists('s:nuake_buf_name')
-			let s:nuake_buf_name = -1
-		elseif exists('b:term_title') && s:nuake_buf_name == -1
-			let s:nuake_buf_name = b:term_title
+		if !exists('s:nuake_buf_nr')
+			let s:nuake_buf_nr = -1
+		elseif &filetype == 'nuake' && s:nuake_buf_nr == -1
+			let s:nuake_buf_nr = bufnr('%')
 		endif
-		return s:nuake_buf_name
+		return s:nuake_buf_nr
 	else
-		if !exists('t:nuake_buf_name')
-			let t:nuake_buf_name = -1
-		elseif exists('b:term_title') && t:nuake_buf_name == -1
-			let t:nuake_buf_name = b:term_title
+		if !exists('t:nuake_buf_nr')
+			let t:nuake_buf_nr = -1
+		elseif &filetype == 'nuake' && t:nuake_buf_nr == -1
+			let t:nuake_buf_nr = bufnr('%')
 		endif
-		return t:nuake_buf_name
+		return t:nuake_buf_nr
 	endif
 endfunction
 
 function! s:NuakeLook() abort "{{{2
-	let l:nuake_win_nr = bufwinnr(s:NuakeBufName())
+	let l:nuake_win_nr = bufwinnr(s:NuakeBufNr())
 
 	if g:nuake_position == 0
 		let l:mode = ''
@@ -122,7 +124,10 @@ endfunction
 " Autocomands {{{1
 augroup nuake_start_insert
 	autocmd!
-	autocmd BufEnter term://* startinsert
+	autocmd FileType,BufWinEnter *
+				\ if &filetype == 'nuake'|
+				\ execute 'silent! normal i' |
+				\ endif
 augroup END
 
 augroup nuake_last_standing_window
@@ -133,7 +138,7 @@ augroup END
 augroup nuake_tab_close
 	if g:nuake_per_tab == 1
 		autocmd!
-		autocmd TabLeave * let s:temp_nuake_buf_nr = bufnr(s:NuakeBufName())
+		autocmd TabLeave * let s:temp_nuake_buf_nr = bufnr(s:NuakeBufNr())
 		autocmd TabClosed * execute 'bdelete! ' . s:temp_nuake_buf_nr
 		autocmd TabClosed * unlet s:temp_nuake_buf_nr
 	endif
@@ -142,7 +147,7 @@ augroup END
 augroup nuake_resize_window
 	autocmd!
 	autocmd VimResized *
-				\ if bufwinnr(s:NuakeBufName()) != -1 |
+				\ if bufwinnr(s:NuakeBufNr()) != -1 |
 				\ call s:ResizeWindow() |
 				\ redraw |
 				\ endif

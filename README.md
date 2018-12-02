@@ -1,5 +1,5 @@
 # Nuake
-A Quake-style terminal panel for Neovim.
+A Quake-style terminal panel for Neovim and Vim >= 8.0.1593.
 
 ## Installation
 This plugin follows the standard runtime path structure.

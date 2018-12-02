@@ -1,8 +1,8 @@
-*nuake.txt* A Quake-style terminal panel for Neovim
+*nuake.txt* A Quake-style terminal panel for Neovim and Vim
 
 Author:     Lenovsky <lenovsky@pm.me>
 Source:     https://gitlab.com/Lenovsky/nuake
-Version:    1.0.0
+Version:    1.2.0
 
 ==============================================================================
 Contents                                                      *nuake-contents*
@@ -19,9 +19,9 @@ Contents                                                      *nuake-contents*
 ==============================================================================
 1. Introduction                                           *nuake-introduction*
 
-Nuake is a Quake-style terminal panel for Neovim. Its design is inspired from
-consoles in computer games, such as Quake, which is invoked with a single key,
-and hidden by pressing the same key again.
+Nuake is a Quake-style terminal panel for Neovim and Vim >= 8.0.1593. Its
+design is inspired from consoles in computer games, such as Quake, which is
+invoked with a single key, and hidden by pressing the same key again.
 
 ==============================================================================
 2. Usage                                                         *nuake-usage*
@@ -77,6 +77,10 @@ https://gitlab.com/Lenovsky/nuake/merge_requests
 
 ==============================================================================
 5. Changelog                                                 *nuake-changelog*
+
+v1.2.0
+    * Add support for Vim.
+    * Minor bug fixes.
 
 v1.1.0
     * Drop support for the statusline.
