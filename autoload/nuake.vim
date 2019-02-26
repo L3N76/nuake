@@ -14,7 +14,7 @@ endfunction
 function! s:OpenWindow() abort "{{{2
 	let l:nuake_buf_nr = bufnr(s:NuakeBufNr())
 
-	execute  'silent keepalt botright ' . s:NuakeLook() . 'split'
+	execute  'silent keepalt ' . s:NuakeLook() . 'split'
 
 	if l:nuake_buf_nr != -1
 		execute  'buffer ' . l:nuake_buf_nr
@@ -108,11 +108,17 @@ endfunction
 function! s:NuakeLook() abort "{{{2
 	let l:nuake_win_nr = bufwinnr(s:NuakeBufNr())
 
-	if g:nuake_position == 0
-		let l:mode = ''
+	if g:nuake_position == 'bottom'
+		let l:mode = 'botright '
 		let l:size = float2nr(g:nuake_size * floor(&lines - 2))
-	else
-		let l:mode = l:nuake_win_nr != -1 ? '' : 'vertical '
+	elseif g:nuake_position == 'right'
+		let l:mode = l:nuake_win_nr != -1 ? '' : 'botright vertical '
+		let l:size = float2nr(g:nuake_size * floor(&columns))
+	elseif g:nuake_position == 'top'
+		let l:mode = 'topleft '
+		let l:size = float2nr(g:nuake_size * floor(&lines - 2))
+	elseif g:nuake_position == 'left'
+		let l:mode = l:nuake_win_nr != -1 ? '' : 'topleft vertical '
 		let l:size = float2nr(g:nuake_size * floor(&columns))
 	endif
 
@@ -121,6 +127,13 @@ function! s:NuakeLook() abort "{{{2
 	return l:nuake_look
 endfunction
 
+function! s:NuakeCloseTab() abort "{{{2
+	if s:temp_nuake_buf_nr > -1
+		execute 'bdelete! ' . s:temp_nuake_buf_nr
+		unlet s:temp_nuake_buf_nr
+	endif
+endfunction
+"
 " Autocomands {{{1
 augroup nuake_start_insert
 	autocmd!
@@ -139,9 +152,14 @@ augroup nuake_tab_close
 	if g:nuake_per_tab == 1
 		autocmd!
 		autocmd TabLeave * let s:temp_nuake_buf_nr = bufnr(s:NuakeBufNr())
-		autocmd TabClosed * execute 'bdelete! ' . s:temp_nuake_buf_nr
-		autocmd TabClosed * unlet s:temp_nuake_buf_nr
+		autocmd TabClosed * call s:NuakeCloseTab() 
 	endif
+augroup END
+
+augroup nuake_term_killed
+  autocmd!
+  autocmd BufWipeout * let s:nuake_buf_nr = -1
+  autocmd BufWipeout * let t:nuake_buf_nr = -1
 augroup END
 
 augroup nuake_resize_window

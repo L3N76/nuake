@@ -41,10 +41,9 @@ You can tweak the behavior of Nuake by setting a few variables in your
 |init.vim| file.
 
                                                             *g:nuake_position*
-let g:nuake_position = {0,1} (default 0)
-    Set the Nuake position:
-        0: horizontal,
-        1: vertical.
+let g:nuake_position = { 'bottom', 'right', 'top', 'left'} (default 'bottom')
+    Set the Nuake position: bottom, right, top, left.
+
                                                                 *g:nuake_size*
 let g:nuake_size = {0-1} (default 0.25)
     Set the Nuake size in percent.
@@ -77,6 +76,10 @@ https://gitlab.com/Lenovsky/nuake/merge_requests
 
 ==============================================================================
 5. Changelog                                                 *nuake-changelog*
+
+v1.3.0
+    * Add support for four different postitions.
+    * Fix issue where nuake terminal was killed and lost state
 
 v1.2.0
     * Add support for Vim.
