@@ -27,7 +27,7 @@ You can tweak the behavior of Nuake by setting a few variables in your `~/.confi
 
 | Option | Description |
 | :------| :---------- |
-| `let g:nuake_position = {0,1} (default 0)`<br><br><br> | Set the Nuake position:<br> &emsp; 0: horizontal,<br> &emsp; 1: vertical. |
+| `let g:nuake_position = {position} (default 'bottom')` | Set the Nuake position to 'bottom',  'right',  'top' or 'left'. |
 | `let g:nuake_size = {0-1} (default 0.25)` | Set the Nuake size in percent. |
 | `let g:nuake_per_tab = {0,1} (default 0)` | Enable the Nuake instance per tab page. |
 
