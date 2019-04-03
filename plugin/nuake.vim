@@ -22,6 +22,7 @@ endfor
 
 " Commands {{{1
 command! -nargs=0 Nuake call nuake#ToggleWindow()
+command! -nargs=0 NuakeLocal call nuake#Window()
 
 " Modeline {{{1
 " vim: ts=4 sw=4 sts=4 noet foldenable foldmethod=marker

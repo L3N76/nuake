@@ -34,6 +34,8 @@ Add the following into your |init.vim| to toggle Nuake with <F4>:
     inoremap <F4> <C-\><C-n>:Nuake<CR>
     tnoremap <F4> <C-\><C-n>:Nuake<CR>
 
+Run |:NuakeLocal| to open Nuake in the current window.
+
 ==============================================================================
 3. Configuration                                         *nuake-configuration*
 

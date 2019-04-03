@@ -11,10 +11,12 @@ function! nuake#ToggleWindow() abort "{{{2
 	endif
 endfunction
 
-function! s:OpenWindow() abort "{{{2
-	let l:nuake_buf_nr = bufnr(s:NuakeBufNr())
+function! nuake#Window() abort "{{{2
+	call s:OpenWindowLocal()
+endfunction
 
-	execute  'silent keepalt ' . s:NuakeLook() . 'split'
+function! s:OpenWindowLocal() abort "{{{2
+	let l:nuake_buf_nr = bufnr(s:NuakeBufNr())
 
 	if l:nuake_buf_nr != -1
 		execute  'buffer ' . l:nuake_buf_nr
@@ -26,6 +28,11 @@ function! s:OpenWindow() abort "{{{2
 		call s:NuakeBufNr()
 	endif
 
+endfunction
+
+function! s:OpenWindow() abort "{{{2
+	execute  'silent keepalt ' . s:NuakeLook() . 'split'
+	call s:OpenWindowLocal()
 endfunction
 
 function! s:InitWindow() abort "{{{2
