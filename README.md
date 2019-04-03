@@ -21,6 +21,7 @@ This plugin follows the standard runtime path structure.
    inoremap <F4> <C-\><C-n>:Nuake<CR>
    tnoremap <F4> <C-\><C-n>:Nuake<CR>
    ```
+- Run `:NuakeLocal` to open Nuake in the current window.
 
 ## Configuration
 You can tweak the behavior of Nuake by setting a few variables in your `~/.config/nvim/init.vim` file.
