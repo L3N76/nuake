@@ -54,7 +54,7 @@ let g:nuake_per_tab = {0,1} (default 0)
 
                                                              *g:close_if_last_standing*
 let g:close_if_last_standing = {0,1} (default 1)
-    Close vim if the Nuake window is the last window.
+    Close the editor if the Nuake window is the last one.
 
                                                              *g:start_insert*
 let g:start_insert = {0,1} (default 1)
