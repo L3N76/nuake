@@ -12,6 +12,8 @@ let s:options = [
 	\ ['position', 'bottom'],
 	\ ['size', 0.25],
 	\ ['per_tab', 0],
+	\ ['close_if_last_standing', 1],
+	\ ['start_insert', 1],
 \ ]
 
 for [opt, val] in s:options

@@ -74,14 +74,16 @@ function! s:ResizeWindow() abort "{{{2
 endfunction
 
 function! s:LastStandingWindow() abort "{{{2
-	let l:nuake_win_nr = bufwinnr(s:NuakeBufNr())
+	if g:nuake_close_if_last_standing == 1
+		let l:nuake_win_nr = bufwinnr(s:NuakeBufNr())
 
-	if winnr('$') < 2 && l:nuake_win_nr != -1
-		if tabpagenr('$') < 2
-			bdelete!
-			quit
-		else
-			close
+		if winnr('$') < 2 && l:nuake_win_nr != -1
+			if tabpagenr('$') < 2
+				bdelete!
+				quit
+			else
+				close
+			endif
 		endif
 	endif
 endfunction
@@ -138,7 +140,7 @@ endfunction
 augroup nuake_start_insert
 	autocmd!
 	autocmd FileType,BufWinEnter *
-				\ if &filetype == 'nuake'|
+				\ if &filetype == 'nuake' && (g:nuake_start_insert == 1) |
 				\ execute 'silent! normal i' |
 				\ endif
 augroup END
