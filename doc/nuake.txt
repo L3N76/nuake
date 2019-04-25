@@ -12,7 +12,7 @@ Contents                                                      *nuake-contents*
     3. Configuration ................... |nuake-configuration|
     4. Contributing .................... |nuake-contributing|
         4.1. Issues .................... |nuake-issues|
-        4.2. Merge requests ............ |nuake-merges|
+        4.2. Pull requests ............. |nuake-pulls|
     5. Changelog ....................... |nuake-changelog|
     6. License ......................... |nuake-license|
 
@@ -52,11 +52,11 @@ let g:nuake_size = {0-1} (default 0.25)
 let g:nuake_per_tab = {0,1} (default 0)
     Enable the Nuake instance per tab page.
 
-                                                             *g:close_if_last_standing*
+                                                    *g:close_if_last_standing*
 let g:close_if_last_standing = {0,1} (default 1)
     Close the editor if the Nuake window is the last one.
 
-                                                             *g:start_insert*
+                                                              *g:start_insert*
 let g:start_insert = {0,1} (default 1)
     Enter insert mode when opening Nuake.
 
@@ -72,15 +72,15 @@ help improve Nuake.
 You can help improve Nuake by reporting issues and feature requests in the
 issue tracker:
 
-https://gitlab.com/Lenovsky/nuake/issues
+https://github.com/Lenovsky/nuake/issues
 
 ------------------------------------------------------------------------------
-4.2. Merge requests                                             *nuake-merges*
+4.2. Pull requests                                               *nuake-pulls*
 
-Think you can make Nuake better? Awesome! Fork it on GitLab, pick a bug or
-feature and create a merge request:
+Think you can make Nuake better? Awesome! Fork it on GitHub, pick a bug or
+feature and create a pull request:
 
-https://gitlab.com/Lenovsky/nuake/merge_requests
+https://github.com/Lenovsky/nuake/pulls
 
 ==============================================================================
 5. Changelog                                                 *nuake-changelog*
@@ -106,7 +106,7 @@ v1.0.0
 MIT License
 Copyright (c) 2017-2018 Lenovsky <lenovsky@pm.me>
 
-https://gitlab.com/Lenovsky/nuake/blob/master/LICENSE
+https://github.com/Lenovsky/nuake/blob/master/LICENSE
 
 ==============================================================================
 vim:tw=78:ts=8:ft=help:norl:
