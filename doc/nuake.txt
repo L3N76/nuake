@@ -1,7 +1,7 @@
 *nuake.txt* A Quake-style terminal panel for Neovim and Vim
 
 Author:     Lenovsky <lenovsky@pm.me>
-Source:     https://gitlab.com/Lenovsky/nuake
+Source:     https://github.com/Lenovsky/nuake
 Version:    1.2.0
 
 ==============================================================================

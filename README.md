@@ -6,11 +6,11 @@ This plugin follows the standard runtime path structure.
 
 | Plugin manager | How to install |
 | :------------- | :------------- |
-| [Dein][1] | `call dein#add('https://gitlab.com/Lenovsky/nuake.git')` |
-| [minpac][2] | `call minpac#add('https://gitlab.com/Lenovsky/nuake.git')` |
-| [Pathogen][3] | `git clone https://gitlab.com/Lenovsky/nuake.git ~/.config/nvim/bundle/nuake` |
-| [Plug][4] | `Plug 'https://gitlab.com/Lenovsky/nuake.git'` |
-| [Vundle][5] | `Plugin 'https://gitlab.com/Lenovsky/nuake.git'` |
+| [Dein][1] | `call dein#add('Lenovsky/nuake')` |
+| [minpac][2] | `call minpac#add('Lenovsky/nuake')` |
+| [Pathogen][3] | `git clone https://github.com/Lenovsky/nuake.git ~/.config/nvim/bundle/nuake` |
+| [Plug][4] | `Plug 'Lenovsky/nuake'` |
+| [Vundle][5] | `Plugin 'Lenovsky/nuake'` |
 
 ## Usage
 - Run `:Nuake` to toggle Nuake manually.
