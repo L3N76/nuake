@@ -139,7 +139,7 @@ endfunction
 " Autocomands {{{1
 augroup nuake_start_insert
 	autocmd!
-	autocmd FileType,BufWinEnter *
+	autocmd FileType,BufEnter *
 				\ if &filetype == 'nuake' && (g:nuake_start_insert == 1) |
 				\ execute 'silent! normal i' |
 				\ endif
