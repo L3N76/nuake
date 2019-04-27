@@ -8,14 +8,13 @@ This plugin follows the standard runtime path structure.
 | :------------- | :------------- |
 | [Dein][1] | `call dein#add('Lenovsky/nuake')` |
 | [minpac][2] | `call minpac#add('Lenovsky/nuake')` |
-| [Pathogen][3] | `git clone https://github.com/Lenovsky/nuake.git ~/.config/nvim/bundle/nuake` |
 | [Plug][4] | `Plug 'Lenovsky/nuake'` |
 | [Vundle][5] | `Plugin 'Lenovsky/nuake'` |
 
 ## Usage
 - Run `:Nuake` to toggle Nuake manually.
 
-- Add the following into your `~/.config/nvim/init.vim` to toggle Nuake with `F4`:
+- Add the following into your config file to toggle Nuake with `F4`:
    ```
    nnoremap <F4> :Nuake<CR>
    inoremap <F4> <C-\><C-n>:Nuake<CR>
@@ -23,7 +22,7 @@ This plugin follows the standard runtime path structure.
    ```
 
 ## Configuration
-You can tweak the behavior of Nuake by setting a few variables in your `~/.config/nvim/init.vim` file.
+You can tweak the behavior of Nuake by setting a few variables in your config file.
 
 | Option | Description |
 | :------| :---------- |

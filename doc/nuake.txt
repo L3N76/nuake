@@ -28,7 +28,7 @@ invoked with a single key, and hidden by pressing the same key again.
 
 Run |:Nuake| to toggle Nuake manually.
 
-Add the following into your |init.vim| to toggle Nuake with <F4>:
+Add the following into your config file to toggle Nuake with <F4>:
 >
     nnoremap <F4> :Nuake<CR>
     inoremap <F4> <C-\><C-n>:Nuake<CR>
@@ -38,7 +38,7 @@ Add the following into your |init.vim| to toggle Nuake with <F4>:
 3. Configuration                                         *nuake-configuration*
 
 You can tweak the behavior of Nuake by setting a few variables in your
-|init.vim| file.
+config file.
 
                                                             *g:nuake_position*
 let g:nuake_position = { 'bottom', 'right', 'top', 'left'} (default 'bottom')
