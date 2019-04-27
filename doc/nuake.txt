@@ -87,7 +87,10 @@ https://github.com/Lenovsky/nuake/pulls
 
 v1.3.0
     * Add support for four different postitions.
-    * Fix issue where nuake terminal was killed and lost state
+    * Add option g:start_insert.
+    * Add option g:close_if_last_standing.
+    * Fix issue where Nuake terminal was killed and lost state.
+    * Fix not working auto insert mode.
 
 v1.2.0
     * Add support for Vim.
