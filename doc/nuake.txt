@@ -2,7 +2,7 @@
 
 Author:     Lenovsky <lenovsky@pm.me>
 Source:     https://github.com/Lenovsky/nuake
-Version:    1.2.0
+Version:    1.3.0
 
 ==============================================================================
 Contents                                                      *nuake-contents*
