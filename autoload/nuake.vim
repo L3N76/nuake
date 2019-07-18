@@ -159,9 +159,12 @@ augroup nuake_tab_close
 augroup END
 
 augroup nuake_term_killed
-  autocmd!
-  autocmd BufWipeout * let s:nuake_buf_nr = -1
-  autocmd BufWipeout * let t:nuake_buf_nr = -1
+	autocmd!
+	autocmd BufDelete *
+				\ if bufnr(s:NuakeBufNr()) == -1 |
+				\ let s:nuake_buf_nr = -1 |
+				\ let t:nuake_buf_nr = -1 |
+				\ endif
 augroup END
 
 augroup nuake_resize_window
