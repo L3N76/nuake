@@ -1,6 +1,7 @@
 " autoload/nuake.vim
 
-" Window management {{{1
+" Window Management: {{{1
+
 function! nuake#ToggleWindow() abort "{{{2
     let l:nuake_win_nr = bufwinnr(s:NuakeBufNr())
 
@@ -10,6 +11,7 @@ function! nuake#ToggleWindow() abort "{{{2
         call s:OpenWindow()
     endif
 endfunction
+" }}}
 
 function! s:OpenWindow() abort "{{{2
     let l:nuake_buf_nr = bufnr(s:NuakeBufNr())
@@ -27,16 +29,20 @@ function! s:OpenWindow() abort "{{{2
     endif
 
 endfunction
+" }}}
 
 function! s:InitWindow() abort "{{{2
-    " Buffer-local options
+    " Global Options:
+    setlocal scrolloff=0
+
+    " Local To Buffer Options:
     setlocal filetype=nuake
     setlocal bufhidden=hide
     setlocal noswapfile
     setlocal nobuflisted
     setlocal nomodified
 
-    " Window-local options
+    " Local To Window Options:
     setlocal nolist
     setlocal nowrap
     setlocal winfixwidth
@@ -46,7 +52,9 @@ function! s:InitWindow() abort "{{{2
     setlocal norelativenumber
     setlocal nofoldenable
     setlocal foldcolumn=0
+    setlocal signcolumn=no
 endfunction
+" }}}
 
 function! s:CloseWindow() abort "{{{2
     let l:nuake_win_nr = bufwinnr(s:NuakeBufNr())
@@ -66,12 +74,14 @@ function! s:CloseWindow() abort "{{{2
         endif
     endif
 endfunction
+" }}}
 
 function! s:ResizeWindow() abort "{{{2
     let l:nuake_win_nr = bufwinnr(s:NuakeBufNr())
 
     execute l:nuake_win_nr . 'resize ' . s:NuakeLook()
 endfunction
+" }}}
 
 function! s:LastStandingWindow() abort "{{{2
     if g:nuake_close_if_last_standing == 1
@@ -87,8 +97,12 @@ function! s:LastStandingWindow() abort "{{{2
         endif
     endif
 endfunction
+" }}}
 
-" Helpers {{{1
+" }}}
+
+" Helpers: {{{1
+
 function! s:NuakeBufNr() abort "{{{2
     if g:nuake_per_tab == 0
         if !exists('s:nuake_buf_nr')
@@ -106,48 +120,50 @@ function! s:NuakeBufNr() abort "{{{2
         return t:nuake_buf_nr
     endif
 endfunction
+" }}}
 
 function! s:NuakeLook() abort "{{{2
     let l:nuake_win_nr = bufwinnr(s:NuakeBufNr())
 
     if g:nuake_position == 'bottom'
-        let l:mode = 'botright '
-        let l:size = float2nr(g:nuake_size * floor(&lines - 2))
+        let l:mode = l:nuake_win_nr != -1 ? '' : 'botright '
+        let l:size = float2nr(floor(g:nuake_size * (&lines - 2)))
+    elseif g:nuake_position == 'top'
+        let l:mode = l:nuake_win_nr != -1 ? '' : 'topleft '
+        let l:size = float2nr(floor(g:nuake_size * (&lines - 2)))
     elseif g:nuake_position == 'right'
         let l:mode = l:nuake_win_nr != -1 ? '' : 'botright vertical '
-        let l:size = float2nr(g:nuake_size * floor(&columns))
-    elseif g:nuake_position == 'top'
-        let l:mode = 'topleft '
-        let l:size = float2nr(g:nuake_size * floor(&lines - 2))
+        let l:size = float2nr(floor(g:nuake_size * &columns))
     elseif g:nuake_position == 'left'
         let l:mode = l:nuake_win_nr != -1 ? '' : 'topleft vertical '
-        let l:size = float2nr(g:nuake_size * floor(&columns))
+        let l:size = float2nr(floor(g:nuake_size * &columns))
     endif
 
-    let l:nuake_look = l:mode . l:size
-
-    return l:nuake_look
+    return l:mode.l:size
 endfunction
+" }}}
 
 function! s:NuakeCloseTab() abort "{{{2
-    if s:temp_nuake_buf_nr > -1
+    if s:temp_nuake_buf_nr != -1
         execute 'bdelete! ' . s:temp_nuake_buf_nr
         unlet s:temp_nuake_buf_nr
     endif
 endfunction
-"
-" Autocomands {{{1
+" }}}
+
+" Auto Commands: {{{1
+
 augroup nuake_start_insert
     autocmd!
     autocmd FileType,BufEnter *
                 \ if &filetype == 'nuake' && (g:nuake_start_insert == 1) |
-                \ execute 'silent! normal i' |
+                \ startinsert! |
                 \ endif
 augroup END
 
 augroup nuake_last_standing_window
     autocmd!
-    autocmd BufEnter * nested call s:LastStandingWindow()
+    autocmd BufEnter * ++nested call s:LastStandingWindow()
 augroup END
 
 augroup nuake_tab_close
@@ -175,6 +191,6 @@ augroup nuake_resize_window
                 \ redraw |
                 \ endif
 augroup END
+" }}}
 
-" Modeline {{{1
 " vim: ts=8 sw=4 sts=4 et foldenable foldmethod=marker

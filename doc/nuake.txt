@@ -5,69 +5,71 @@ Source:     https://github.com/Lenovsky/nuake
 Version:    1.3.0
 
 ==============================================================================
-Contents                                                      *nuake-contents*
+CONTENTS                                   *nuake-contents*
 
-    1. Introduction .................... |nuake-introduction|
-    2. Usage ........................... |nuake-usage|
-    3. Configuration ................... |nuake-configuration|
-    4. Contributing .................... |nuake-contributing|
-        4.1. Issues .................... |nuake-issues|
-        4.2. Pull requests ............. |nuake-pulls|
-    5. Changelog ....................... |nuake-changelog|
-    6. License ......................... |nuake-license|
+    1. Introduction ...................... |nuake-introduction|
+    2. Usage ............................. |nuake-usage|
+    3. Configuration ..................... |nuake-configuration|
+    4. Contributing ...................... |nuake-contributing|
+        4.1. Issues ...................... |nuake-issues|
+        4.2. Pull requests ............... |nuake-pulls|
+    5. Changelog ......................... |nuake-changelog|
+    6. License ........................... |nuake-license|
 
 ==============================================================================
-1. Introduction                                           *nuake-introduction*
+INTRODUCTION 1.                            *nuake-introduction*
 
 Nuake is a Quake-style terminal panel for Neovim and Vim >= 8.0.1593. Its
 design is inspired from consoles in computer games, such as Quake, which is
 invoked with a single key, and hidden by pressing the same key again.
 
 ==============================================================================
-2. Usage                                                         *nuake-usage*
+USAGE 2.                                   *nuake-usage*
 
 Run |:Nuake| to toggle Nuake manually.
 
-Add the following into your config file to toggle Nuake with <F4>:
+Add the following into your vim/nvim config file to toggle Nuake with <lhs>:
 >
-    nnoremap <F4> :Nuake<CR>
-    inoremap <F4> <C-\><C-n>:Nuake<CR>
-    tnoremap <F4> <C-\><C-n>:Nuake<CR>
+    nmap lhs <Plug>Nuake
+    imap lhs <Plug>Nuake
+    tmap lhs <Plug>Nuake
+
+Otherwise, it will be mapped to <F4>, if not already used.
 
 ==============================================================================
-3. Configuration                                         *nuake-configuration*
+CONFIGURATION 3.                           *nuake-configuration*
 
 You can tweak the behavior of Nuake by setting a few variables in your
 config file.
 
-                                                            *g:nuake_position*
+                                           *g:nuake_position*
 let g:nuake_position = { 'bottom', 'right', 'top', 'left'} (default 'bottom')
     Set the Nuake position: bottom, right, top, left.
 
-                                                                *g:nuake_size*
+                                           *g:nuake_size*
 let g:nuake_size = {0-1} (default 0.25)
     Set the Nuake size in percent.
 
-                                                             *g:nuake_per_tab*
+                                           *g:nuake_per_tab*
 let g:nuake_per_tab = {0,1} (default 0)
     Enable the Nuake instance per tab page.
 
-                                                    *g:close_if_last_standing*
+                                           *g:nuake_close_if_last_standing*
 let g:close_if_last_standing = {0,1} (default 1)
     Close the editor if the Nuake window is the last one.
 
-                                                              *g:start_insert*
+                                           *g:nuake_start_insert*
 let g:start_insert = {0,1} (default 1)
     Enter insert mode when opening Nuake.
 
 ==============================================================================
-4. Contributing                                           *nuake-contributing*
+CONTRIBUTING 4.                            *nuake-contributing*
 
 Thanks for your interest in Nuake! Here are some ways you can get involved and
 help improve Nuake.
 
 ------------------------------------------------------------------------------
-4.1. Issues                                                     *nuake-issues*
+ISSUES 4.1.                                *nuake-issues*
 
 You can help improve Nuake by reporting issues and feature requests in the
 issue tracker:
@@ -75,7 +77,7 @@ issue tracker:
 https://github.com/Lenovsky/nuake/issues
 
 ------------------------------------------------------------------------------
-4.2. Pull requests                                               *nuake-pulls*
+PULL REQUESTS 4.2.                         *nuake-pulls*
 
 Think you can make Nuake better? Awesome! Fork it on GitHub, pick a bug or
 feature and create a pull request:
@@ -83,7 +85,7 @@ feature and create a pull request:
 https://github.com/Lenovsky/nuake/pulls
 
 ==============================================================================
-5. Changelog                                                 *nuake-changelog*
+CHANGELOG 5.                               *nuake-changelog*
 
 v1.3.0
     * Add support for four different postitions.
@@ -104,12 +106,11 @@ v1.0.0
     * Initial stable release.
 
 ==============================================================================
-6. License                                                     *nuake-license*
+LICENSE 6.                                *nuake-license*
 
 MIT License
 Copyright (c) 2017-2018 Lenovsky <lenovsky@pm.me>
 
 https://github.com/Lenovsky/nuake/blob/master/LICENSE
 
-==============================================================================
 vim:tw=78:ts=8:ft=help:norl:
