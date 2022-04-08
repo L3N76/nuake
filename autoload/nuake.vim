@@ -4,8 +4,10 @@
 function! nuake#ToggleWindow() abort "{{{2
     let l:nuake_win_nr = bufwinnr(s:NuakeBufNr())
 
-    if l:nuake_win_nr != -1
+    if l:nuake_win_nr == winnr()
         call s:CloseWindow()
+    elseif l:nuake_win_nr != -1
+        execute l:nuake_win_nr . "wincmd w"
     else
         call s:OpenWindow()
     endif
