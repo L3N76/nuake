@@ -9,6 +9,7 @@ if !has('nvim') && !has('patch-8.0.1593')
 endif
 
 let s:options = [
+            \ ['shell', &shell],
             \ ['position', 'bottom'],
             \ ['size', 0.25],
             \ ['per_tab', 0],

@@ -19,9 +19,9 @@ function! s:OpenWindow() abort "{{{2
     if l:nuake_buf_nr != -1
         execute  'buffer ' . l:nuake_buf_nr
     else
-        let l:vim_options = has('terminal') ? '++curwin ++kill=kill' : ''
+        let l:vim_options = has('terminal') ? ' ++curwin ++kill=kill' : ''
 
-        execute  'terminal' . l:vim_options
+        execute  'terminal ' . g:nuake_shell . l:vim_options
         call s:InitWindow()
         call s:NuakeBufNr()
     endif
